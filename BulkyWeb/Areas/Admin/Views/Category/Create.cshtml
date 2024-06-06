@@ -1,0 +1,47 @@
+﻿@model Category
+@{
+    ViewData["Title"] = "Tạo mới danh mục";
+}
+
+
+<div class="card shadow border-0 mt-4">
+    <div class="card-header bg-secondary bg-gradient ml-0 py-1">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h2 class="text-white py-2">Tạo mới danh mục</h2>
+            </div>
+        </div>
+    </div>
+    <div class="card-body p-4">
+        <form method="post" class="row">
+            <div class="border p-3">
+                <div class="form-floating py-2 col-12">
+                    <input asp-for=Name type="text" class="form-control border-0 shadow" class="ms-2" />
+                    <label asp-for=Name class="ms-2">Tên danh mục</label>
+                    <span asp-validation-for=Name></span>
+                </div>
+                <div class="form-floating py-2 col-12">
+                    <input asp-for=DisplayOrder type="text" class="form-control border-0 shadow" class="ms-2" />
+                    <label asp-for=DisplayOrder class="ms-2">Thứ tự hiển thị</label>
+                    <span asp-validation-for=DisplayOrder></span>
+                </div>
+                <div class="row">
+                    <div class="col-6 col-md-3">
+                        <button type="submit" class="btn btn-primary form-control">Tạo</button>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <a asp-controller="Category" asp-action="Index" class="btn btn-outline-primary form-control">
+                            Trở về
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</div>
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
