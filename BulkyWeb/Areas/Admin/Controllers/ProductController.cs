@@ -1,6 +1,8 @@
 ﻿using Bulky.DataAccess.Repository.IRepository;
 using Bulky.Models;
 using Bulky.Models.ViewModels;
+using Bulky.Utility;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Build.Construction;
@@ -10,6 +12,7 @@ using System.Linq;
 namespace BulkyWeb.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = SD.Role_Admin)]
     public class ProductController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
@@ -86,7 +89,7 @@ namespace BulkyWeb.Areas.Admin.Controllers
                     productVM.Product.ImageUrl =@"images\product\" + fileName;
                 }
                
-                if(productVM.Product.Id == 0 || productVM.Product.Id == null)
+                if(productVM.Product.Id == 0)
                 {
                 _unitOfWork.Product.Add(productVM.Product);
                 TempData["success"] = "Creat new product successfully";
